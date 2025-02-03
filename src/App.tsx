@@ -25,21 +25,23 @@ function App() {
             setPage(page - 1);
           }}
         >
-          <img src="/arrow-right-tiny.svg" alt="Previous page" />
+          <img src="./arrow-right-tiny.svg" />
         </button>
         <span className="text-2xl">
           <span className="font-bold">{page}</span>
           <span className="text-[#9CA4AB]"> / 50</span>
         </span>
         <button
-          className="bg-dark-200 rotate-180 cursor-pointer rounded-lg p-4"
+          className="bg-dark-200 cursor-pointer rounded-lg p-4"
           onClick={() => {
             console.log("Next page");
             history.pushState({}, "", `?page=${+page + 1}`);
             setPage(page + 1);
           }}
         >
-          <img src="/arrow-right-tiny.svg" alt="Next page" />
+          <div>
+            <img className="rotate-180" src="./arrow-right-tiny.svg" />
+          </div>
         </button>
       </div>
     </main>

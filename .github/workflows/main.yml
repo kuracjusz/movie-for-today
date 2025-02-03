@@ -25,8 +25,8 @@ jobs:
 
       - name: set environment variables
         run: |
-          echo "VITE_API_URL=${{ secrets.VITE_API_URL }}" >> $GITHUB_ENV
-          echo "VITE_API_KEY=${{ secrets.VITE_API_KEY }}" >> $GITHUB_ENV
+          echo "VITE_API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
+          echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
 
       - name: Run build
         run: npm run build
