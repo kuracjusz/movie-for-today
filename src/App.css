@@ -1,0 +1,42 @@
+@import "tailwindcss";
+/* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"); */
+
+@theme {
+  --input-shadow: 0px 12px 32px 0px #cecefb05 inset;
+  --color-dark-200: #0f0d23;
+}
+
+@layer base {
+  body {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+  }
+}
+
+.image {
+  background-image: url("./BG.svg");
+}
+
+.text-gradient {
+  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+}
+
+.h1 {
+  @apply text-[3.5rem] leading-[3.75rem] font-bold text-white;
+}
+
+.h2 {
+  @apply text-[2rem] leading-[2rem] font-bold text-white;
+}
+
+.movie-box {
+  @apply flex cursor-pointer flex-col gap-3 rounded-2xl bg-[#0F0D23] p-5;
+
+  & img {
+    @apply w-[264px] rounded-xl;
+  }
+
+  & p {
+    @apply font-bold;
+  }
+}
