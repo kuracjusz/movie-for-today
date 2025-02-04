@@ -34,7 +34,7 @@
   @apply flex cursor-pointer flex-col gap-3 rounded-2xl bg-[#0F0D23] p-5;
 
   & img {
-    @apply w-[264px] rounded-xl;
+    @apply rounded-xl;
   }
 
   & p {
