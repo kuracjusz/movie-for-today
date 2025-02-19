@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react";
 import { Movie, MovieBox } from "./components/MovieBox";
-import { gethMovies } from "./utils/getMovies";
 import { BoxLoader } from "./components/BoxLoader";
 
-export const Popular = ({ page, search }: { page: number; search: string }) => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      setMovies(await gethMovies({ page, search }));
-      setLoading(false);
-    })();
-  }, [page, search]);
-
-  console.log(movies);
-
+export const Popular = ({
+  movies,
+  onClick,
+  loading,
+}: {
+  movies: Movie[];
+  onClick(open: number): void;
+  loading: boolean;
+}) => {
   return (
     <section>
       <h2 className="h2 mb-9">Popular</h2>
@@ -25,7 +19,9 @@ export const Popular = ({ page, search }: { page: number; search: string }) => {
           ? Array.from({ length: 5 }).map((_, index) => (
               <BoxLoader key={index} />
             ))
-          : movies.map((movie) => <MovieBox key={movie.id} movie={movie} />)}
+          : movies.map((movie) => (
+              <MovieBox key={movie.id} movie={movie} onClick={onClick} />
+            ))}
       </div>
     </section>
   );

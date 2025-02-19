@@ -3,7 +3,10 @@
 
 @theme {
   --input-shadow: 0px 12px 32px 0px #cecefb05 inset;
+  --modal-shadow: 0px 0px 100px 0px #ab8bff4d;
   --color-dark-200: #0f0d23;
+  --color-text-200: #a8b5db;
+  --color-text-300: #d6c7ff;
 }
 
 @layer base {
@@ -19,7 +22,7 @@
 }
 
 .text-gradient {
-  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF] bg-clip-text text-transparent;
+  @apply bg-linear-to-r from-[#d6c7ff] to-[#AB8BFF] bg-clip-text text-transparent;
 }
 
 .h1 {
@@ -40,4 +43,8 @@
   & p {
     @apply font-bold;
   }
+}
+
+.bg-gradient {
+  @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF];
 }

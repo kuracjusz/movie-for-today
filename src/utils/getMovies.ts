@@ -10,7 +10,7 @@ export const gethMovies = async ({
       await fetch(
         search
           ? `${import.meta.env.VITE_API_URL}/search/movie?page=${page}&query=${search}`
-          : `${import.meta.env.VITE_API_URL}/discover/movie?page=${page}&s=${search}`,
+          : `${import.meta.env.VITE_API_URL}/discover/movie?page=${page}`,
         {
           headers: {
             authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,

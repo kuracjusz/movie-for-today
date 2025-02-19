@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Header } from "./components/Header";
 import { Popular } from "./Popular";
 import { useDebounce } from "./hooks/useDebounce";
+import { Modal } from "./components/Modal";
+import { Movie } from "./components/MovieBox";
+import { gethMovies } from "./utils/getMovies";
 
 function App() {
   const [search, setSearch] = useState(
@@ -12,13 +15,30 @@ function App() {
     Number(new URLSearchParams(location.search).get("page")) || 1,
   );
   const searchRequest = useDebounce(search);
-  console.log(search, page);
+  const [open, setOpen] = useState(false);
+
+  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movieId, setMovieId] = useState(0);
+  const movie = movies.find((movie) => movie.id === movieId);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setMovies(await gethMovies({ page, search: searchRequest }));
+      setLoading(false);
+    })();
+  }, [page, searchRequest]);
+
+  const onClick = (id: number) => {
+    setOpen(true);
+    setMovieId(id);
+  };
 
   return (
     <main className="image bg-top bg-no-repeat px-20 pb-14">
       <Header setSearch={setSearch} />
       <div className="mt-10">
-        <Popular page={page} search={searchRequest} />
+        <Popular movies={movies} onClick={onClick} loading={loading} />
       </div>
       <div className="mt-9 flex items-center justify-between text-2xl">
         <button
@@ -50,10 +70,14 @@ function App() {
           }}
         >
           <div>
-            <img className="rotate-180" src="./arrow-right-tiny.svg" />
+            <img
+              className="text-text-300 rotate-180"
+              src="./arrow-right-tiny.svg"
+            />
           </div>
         </button>
       </div>
+      {open ? <Modal setOpen={setOpen} movie={movie} /> : null}
     </main>
   );
 }
