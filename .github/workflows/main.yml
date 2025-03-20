@@ -27,6 +27,9 @@ jobs:
         run: |
           echo "VITE_API_URL=${{ secrets.API_URL }}" >> $GITHUB_ENV
           echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> $GITHUB_ENV
+          echo "VITE_COLLECTION_ID=${{ secrets.COLLECTION_ID }}" >> $GITHUB_ENV
+          echo "VITE_DATABASE_ID=${{ secrets.DATABASE_ID }}" >> $GITHUB_ENV
+          echo "VITE_PROJECT_ID=${{ secrets.PROJECT_ID }}" >> $GITHUB_ENV
 
       - name: Run build
         run: npm run build
