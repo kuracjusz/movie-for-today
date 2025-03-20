@@ -1,4 +1,10 @@
-export const Search = ({ setSearch }: { setSearch: (s: string) => void }) => {
+export const Search = ({
+  search,
+  setSearch,
+}: {
+  search: string;
+  setSearch: (s: string) => void;
+}) => {
   const page = new URLSearchParams(location.search).get("page");
 
   return (
@@ -15,7 +21,7 @@ export const Search = ({ setSearch }: { setSearch: (s: string) => void }) => {
             `?page=${page}${e.target.value ? `&s=${e.target.value}` : ""}`,
           );
         }}
-        value={new URLSearchParams(location.search).get("s") || ""}
+        value={search}
       />
     </div>
   );

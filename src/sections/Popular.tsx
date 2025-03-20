@@ -1,12 +1,14 @@
-import { Movie, MovieBox } from "./components/MovieBox";
-import { BoxLoader } from "./components/BoxLoader";
+import { Genre, Movie, MovieBox } from "../components/MovieBox";
+import { BoxLoader } from "../components/BoxLoader";
 
 export const Popular = ({
   movies,
+  genres,
   onClick,
   loading,
 }: {
   movies: Movie[];
+  genres: Genre[];
   onClick(open: number): void;
   loading: boolean;
 }) => {
@@ -20,7 +22,12 @@ export const Popular = ({
               <BoxLoader key={index} />
             ))
           : movies.map((movie) => (
-              <MovieBox key={movie.id} movie={movie} onClick={onClick} />
+              <MovieBox
+                key={movie.id}
+                movie={movie}
+                genres={genres}
+                onClick={onClick}
+              />
             ))}
       </div>
     </section>

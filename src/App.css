@@ -48,3 +48,36 @@
 .bg-gradient {
   @apply bg-linear-to-r from-[#D6C7FF] to-[#AB8BFF];
 }
+
+.trending {
+  & ul {
+    @apply hide-scrollbar flex w-full gap-10 overflow-auto;
+  }
+
+  & ul li {
+    @apply flex min-w-[230px] items-center;
+  }
+
+  & ul li p {
+    @apply text-dark-200 fancy-text text-nowrap;
+  }
+
+  & ul li img {
+    @apply -ml-3.5 h-[163px] w-[127px] rounded-lg object-cover;
+  }
+}
+
+@utility fancy-text {
+  -webkit-text-stroke: 3px rgba(206, 206, 251, 0.5);
+  font-size: 190px;
+  font-family: "Bebas Neue", sans-serif;
+}
+
+@utility hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { Movie } from "./MovieBox";
+import { Genre, Movie } from "./MovieBox";
+import { findGenre } from "../utils/findGenre";
 
 const movieInformation = {
   Title: "Movie",
@@ -23,7 +24,7 @@ const ModalRow = ({
   whiteDescription,
 }: {
   title: string;
-  description: string | string[];
+  description?: string | (string | undefined)[];
   whiteDescription?: boolean;
 }) => {
   return (
@@ -33,10 +34,10 @@ const ModalRow = ({
         className={`text-text-300 flex flex-5 gap-2 self-center ${whiteDescription ? "leading-7 text-white" : ""}`}
       >
         {typeof description === "object"
-          ? description.map((element) => (
+          ? description.map((element, index) => (
               <Fragment key={element}>
                 <span>{element}</span>
-                <span>•</span>
+                {index < description.length - 1 && <span>•</span>}
               </Fragment>
             ))
           : description}
@@ -48,11 +49,13 @@ const ModalRow = ({
 export const Modal = ({
   setOpen,
   movie,
+  genres,
 }: {
   setOpen(open: boolean): void;
   movie?: Movie;
+  genres: Genre[];
 }) => {
-  console.log(movie);
+  const genreName = movie ? findGenre(movie?.genre_ids, genres) : undefined;
 
   if (!movie) return;
 
@@ -71,6 +74,7 @@ export const Modal = ({
           <div className="mb-2 flex flex-col gap-6 lg:flex-row">
             <div className="bg-text-200 flex-1 rounded-lg">
               <img
+                className="h-full object-cover"
                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               />
             </div>
@@ -84,7 +88,7 @@ export const Modal = ({
             <div className="flex flex-col gap-5">
               <ModalRow
                 title="Generes"
-                description={movie.genre_ids.toString()}
+                description={genreName?.map((genre) => genre?.name)}
               />
               <ModalRow
                 title="Overview"

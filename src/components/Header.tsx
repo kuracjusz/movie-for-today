@@ -1,6 +1,12 @@
 import { Search } from "./Search";
 
-export const Header = ({ setSearch }: { setSearch: (s: string) => void }) => {
+export const Header = ({
+  search,
+  setSearch,
+}: {
+  search: string;
+  setSearch: (s: string) => void;
+}) => {
   return (
     <header className="mx-auto flex w-[640px] flex-col items-center justify-center py-[3rem]">
       <img src="./logo.svg" alt="logo" />
@@ -13,7 +19,7 @@ export const Header = ({ setSearch }: { setSearch: (s: string) => void }) => {
         Find <span className="text-gradient">Movies</span> You'll Love Without
         the Hassle
       </h1>
-      <Search setSearch={setSearch} />
+      <Search search={search} setSearch={setSearch} />
     </header>
   );
 };
